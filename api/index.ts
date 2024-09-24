@@ -8,9 +8,13 @@ app.use(createProxyMiddleware({
   router: (req) => new URL(req.path.substring(1)),
   pathRewrite: (path, req) => (new URL(req.path.substring(1))).pathname,
   changeOrigin: true,
-  logger: console
+  headers: {
+    'Authorization': 'Bearer XXXXX',
+    //'Content-Type': 'application/x-www-form-urlencoded',
+    'Connection': 'keep-alive'
+  }
 }))
 
-app.listen(8088, () => {
-  console.info('proxy server is running on port 8088')
+app.listen(3000, () => {
+  console.info('proxy server is running on port 3000')
 })
